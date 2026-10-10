@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summer Açaí - Cardápio Digital & Açaíteria | Mariana MG</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts (Inter & Montserrat) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            summer: {
+              DEFAULT: '#4A154B', // Roxo Açaí Premium
+              dark: '#2d0a2e',
+              light: '#6d1b6e',
+              accent: '#FF007A', // Rosa Vibrante Summer
+              orange: '#FF6B00', // Laranja Sol / Verão
+              yellow: '#FFD600', // Amarelo Dourado
+              bgLight: '#f8f4f9'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #4A154B;
+      border-radius: 4px;
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #FF007A 0%, #FF6B00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-summer-bgLight text-gray-800 font-sans min-h-screen flex flex-col pb-16 antialiased selection:bg-summer-accent selection:text-white">
+
+  <!-- Top Banner Info Bar -->
+  <div class="bg-summer-dark text-purple-100 text-[11px] sm:text-xs py-2 px-4">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5">
+      <div class="flex items-center gap-3">
+        <span class="flex items-center gap-1.5 text-summer-yellow font-semibold">
+          <i class="fa-solid fa-location-dot"></i> Praça Gomes Freire, 220 - Centro, Mariana/MG
+        </span>
+        <span class="hidden sm:inline text-purple-500">|</span>
+        <span class="hidden sm:flex items-center gap-1 text-purple-200">
+          <i class="fa-solid fa-sun text-summer-orange"></i> O Açaí mais gostoso do Jardim de Mariana
+        </span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="bg-purple-900/80 px-2.5 py-0.5 rounded-full text-[10px] uppercase font-bold text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
+          <i class="fa-solid fa-circle-check text-emerald-400"></i> CNPJ Verificado
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="bg-white border-b border-purple-100 pt-4 pb-3 px-4 shadow-sm sticky top-0 z-30">
+    <div class="max-w-6xl mx-auto flex flex-col items-center text-center">
+      
+      <!-- Top Actions -->
+      <div class="w-full flex justify-between items-center mb-2 sm:mb-0 sm:absolute sm:top-4 sm:left-4 sm:right-4 pointer-events-none">
+        <div class="pointer-events-auto">
+          <!-- CNPJ Verification Chip -->
+          <button onclick="openCNPJModal()" class="inline-flex items-center gap-1.5 bg-purple-50 hover:bg-purple-100 border border-purple-200 text-summer-dark text-xs font-bold px-3 py-1.5 rounded-full shadow-sm transition">
+            <i class="fa-solid fa-shield-check text-summer-accent text-sm"></i>
+            <span class="hidden sm:inline">Empresa</span> Verificada
+          </button>
+        </div>
+
+        <div class="pointer-events-auto flex items-center gap-2">
+          <button onclick="toggleCartModal()" class="relative bg-gradient-to-r from-summer to-summer-light text-white text-xs font-bold px-3.5 py-2 rounded-xl hover:opacity-95 transition flex items-center gap-2 shadow-md">
+            <i class="fa-solid fa-basket-shopping text-summer-yellow"></i>
+            <span class="hidden sm:inline">Minha Sacola</span>
+            <span id="header-cart-count" class="bg-summer-accent text-white font-black text-[11px] px-2 py-0.2 rounded-full">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Summer Açaí Main Brand Header -->
+      <div class="flex flex-col items-center justify-center gap-1.5 mt-1 sm:mt-0">
+        <div class="w-16 h-16 bg-gradient-to-br from-summer via-summer-light to-summer-accent text-summer-yellow rounded-2xl flex items-center justify-center shadow-lg transform rotate-3 border-2 border-white ring-4 ring-purple-100">
+          <i class="fa-solid fa-ice-cream text-3xl transform -rotate-3"></i>
+        </div>
+        <div class="text-center mt-2">
+          <h1 class="text-3xl sm:text-4xl font-display font-black text-summer tracking-tight leading-none flex items-center justify-center gap-2 uppercase">
+            Summer <span class="text-gradient">Açaí</span>
+          </h1>
+          <p class="text-[11px] sm:text-xs font-bold tracking-widest text-summer-orange uppercase mt-1 flex items-center justify-center gap-1">
+            <i class="fa-solid fa-bolt"></i> Açaíteria & Sorveteria | Mariana - MG
+          </p>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="mt-4 border-t border-gray-100 pt-2.5 w-full max-w-xl">
+        <ul class="flex justify-center items-center gap-3 sm:gap-6 text-xs sm:text-sm font-bold text-gray-600 uppercase tracking-wider flex-wrap">
+          <li><a href="#montar-acai" class="text-summer-accent font-extrabold hover:text-summer-orange transition-colors"><i class="fa-solid fa-fire"></i> Monte seu Açaí</a></li>
+          <li><span class="text-gray-300">•</span></li>
+          <li><a href="#combinados" class="hover:text-summer transition-colors">Copos Especiais</a></li>
+          <li><span class="text-gray-300">•</span></li>
+          <li><a href="#sorvetes" class="hover:text-summer transition-colors">Sorvetes & Shakes</a></li>
+          <li><span class="text-gray-300">•</span></li>
+          <li><a href="#empresa-verificada" class="hover:text-summer transition-colors">Verificação CNPJ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Welcome Banner -->
+  <section class="bg-gradient-to-r from-summer-dark via-summer to-summer-light text-white text-center py-3 px-4 shadow-inner">
+    <div class="max-w-6xl mx-auto flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold">
+      <i class="fa-solid fa-sun text-summer-yellow"></i>
+      <span>O melhor açaí da Praça Gomes Freire! Escolha seu tamanho e adicione seus acompanhamentos preferidos.</span>
+      <i class="fa-solid fa-sun text-summer-yellow"></i>
+    </div>
+  </section>
+
+  <!-- Official CNPJ Verification Section Banner -->
+  <section id="empresa-verificada" class="max-w-6xl mx-auto px-4 mt-6">
+    <div class="bg-gradient-to-r from-purple-950 via-summer-dark to-slate-900 text-white rounded-3xl p-5 sm:p-6 shadow-xl border border-purple-800/40 relative overflow-hidden">
+      <!-- Background Graphic -->
+      <div class="absolute -right-10 -bottom-10 opacity-10 text-white pointer-events-none">
+        <i class="fa-solid fa-shield-halved text-9xl"></i>
+      </div>
+
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative z-10">
+        
+        <div class="space-y-3">
+          <div class="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/40 text-emerald-200 text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">
+            <i class="fa-solid fa-badge-check text-emerald-400 text-sm"></i>
+            Empresa Registrada e Ativa na Receita Federal
+          </div>
+
+          <div>
+            <h3 class="text-xl sm:text-2xl font-display font-extrabold text-white flex items-center gap-2">
+              Mariana Acai e Sorvetes LTDA
+              <span class="text-emerald-400 text-base" title="CNPJ Ativo"><i class="fa-solid fa-circle-check"></i></span>
+            </h3>
+            <p class="text-xs sm:text-sm text-purple-200 font-medium mt-1">
+              Nome Fantasia: <strong class="text-white font-bold">Summer Acai</strong> | Fundada em: <span class="text-purple-100">23/07/2019</span>
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs pt-1">
+            <div class="bg-white/10 p-3 rounded-2xl border border-white/10">
+              <span class="text-purple-300 block text-[10px] uppercase font-bold">CNPJ Oficial</span>
+              <strong class="text-summer-yellow font-mono text-sm">34.289.266/0001-18</strong>
+              <span class="inline-block ml-1 text-[10px] bg-emerald-500/30 text-emerald-200 px-1.5 py-0.2 rounded font-bold">ATIVA</span>
+            </div>
+
+            <div class="bg-white/10 p-3 rounded-2xl border border-white/10">
+              <span class="text-purple-300 block text-[10px] uppercase font-bold">Atividade Principal (CNAE)</span>
+              <strong class="text-white">Lanchonetes, Sucos & Similares</strong>
+              <span class="block text-[10px] text-purple-200">Código 56.11-2-03</span>
+            </div>
+
+            <div class="bg-white/10 p-3 rounded-2xl border border-white/10 sm:col-span-2 md:col-span-1">
+              <span class="text-purple-300 block text-[10px] uppercase font-bold">Endereço da Sede</span>
+              <p class="text-purple-100 text-[11px] leading-tight mt-0.5">
+                Praca Gomes Freire, 220 - Centro, Mariana - MG, CEP 35.420-000
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-row lg:flex-col gap-2.5 w-full lg:w-auto shrink-0 border-t lg:border-t-0 lg:border-l border-white/10 pt-4 lg:pt-0 lg:pl-6 justify-end">
+          <button onclick="openCNPJModal()" class="w-full sm:w-auto bg-summer-accent hover:bg-pink-600 text-white font-bold text-xs px-4 py-3 rounded-2xl transition shadow-lg flex items-center justify-center gap-2 uppercase tracking-wider">
+            <i class="fa-solid fa-file-contract"></i> Ficha Cadastral
+          </button>
+          <a href="https://maps.google.com/?q=Praca+Gomes+Freire,+220+-+Centro,+Mariana+-+MG" target="_blank" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-semibold text-xs px-4 py-3 rounded-2xl transition border border-white/20 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-map-location-dot text-summer-yellow"></i> Como Chegar
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN AÇAÍ BUILDER & MENU SECTION -->
+  <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full space-y-12">
+    
+    <!-- 1. BUILDER DE AÇAÍ PERSONALIZADO SUMMER -->
+    <section id="montar-acai" class="bg-gradient-to-br from-summer-dark via-summer to-summer-light rounded-3xl p-6 sm:p-8 text-white shadow-2xl border border-purple-500/30 relative overflow-hidden">
+      
+      <div class="relative z-10">
+        <div class="inline-flex items-center gap-2 bg-summer-accent text-white text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-3 shadow-md">
+          <i class="fa-solid fa-bolt"></i> Monte do Seu Jeito
+        </div>
+        
+        <h2 class="text-2xl sm:text-4xl font-display font-black tracking-tight text-white mb-2">
+          Açaí Summer no Copo 🍧
+        </h2>
+        <p class="text-purple-200 text-xs sm:text-sm max-w-2xl mb-6">
+          Açaí puro, cremoso e super refrescante! Escolha o tamanho do copo ou tigela e selecione os acompanhamentos que mais gosta.
+        </p>
+
+        <!-- Builder Grid -->
+        <div class="bg-black/25 backdrop-blur-md rounded-2xl p-5 border border-white/15 grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Passo 1: Tamanho -->
+          <div class="space-y-3">
+            <h3 class="text-xs font-extrabold uppercase tracking-widest text-summer-yellow flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-summer-yellow text-summer-dark flex items-center justify-center text-xs font-black">1</span> 
+              Escolha o Tamanho
+            </h3>
+            
+            <div class="space-y-2">
+              <label class="flex items-center justify-between p-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 cursor-pointer transition">
+                <div class="flex items-center gap-3">
+                  <input type="radio" name="acai-size" value="Copo 300ml|14.00" checked class="accent-pink-500 w-4 h-4">
+                  <span class="text-xs font-bold text-white">Copo 300ml</span>
+                </div>
+                <span class="text-xs font-black text-summer-yellow">R$ 14,00</span>
+              </label>
+
+              <label class="flex items-center justify-between p-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 cursor-pointer transition">
+                <div class="flex items-center gap-3">
+                  <input type="radio" name="acai-size" value="Copo 500ml|19.00" class="accent-pink-500 w-4 h-4">
+                  <span class="text-xs font-bold text-white">Copo 500ml (Mais Pedido)</span>
+                </div>
+                <span class="text-xs font-black text-summer-yellow">R$ 19,00</span>
+              </label>
+
+              <label class="flex items-center justify-between p-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 cursor-pointer transition">
+                <div class="flex items-center gap-3">
+                  <input type="radio" name="acai-size" value="Tigela 700ml|26.00" class="accent-pink-500 w-4 h-4">
+                  <span class="text-xs font-bold text-white">Tigela Summer 700ml</span>
+                </div>
+                <span class="text-xs font-black text-summer-yellow">R$ 26,00</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Passo 2: Acompanhamentos -->
+          <div class="space-y-3">
+            <h3 class="text-xs font-extrabold uppercase tracking-widest text-summer-yellow flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-summer-yellow text-summer-dark flex items-center justify-center text-xs font-black">2</span> 
+              Escolha os Acompanhamentos
+            </h3>
+            
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <label class="flex items-center gap-2 bg-white/5 p-2 rounded-lg border border-white/10 hover:bg-white/10 cursor-pointer">
+                <input type="checkbox" name="acai-topping" value="Leite Ninho" checked class="accent-pink-500">
+                <span class="text-purple-100">Leite Ninho</span>
+              </label>
+              <label class="flex items-center gap-2 bg-white/5 p-2 rounded-lg border border-white/10 hover:bg-white/10 cursor-pointer">
+                <input type="checkbox" name="acai-topping" value="Leite Condensado" checked class="accent-pink-500">
+                <span class="text-purple-100">Leite Condensado</span>
+              </label>
+              <label class="flex items-center gap-2 bg-white/5 p-2 rounded-lg border border-white/10 hover:bg-white/10 cursor-pointer">
+                <input type="checkbox" name="acai-topping" value="Banana Fresca" checked class="accent-pink-500">
+                <span class="text-purple-100">Banana Fresca</span>
+              </label>
+              <label class="flex items-center gap-2 bg-white/5 p-2 rounded-lg border border-white/10 hover:bg-white/10 cursor-pointer">
+                <input type="checkbox" name="acai-topping" value="Granola Crocante" checked class="accent-pink-500">
+                <span class="text-purple-100">Granola Crocante</span>
+              </label>
+              <label class="flex items-center gap-2 bg-white/5 p-2 rounded-lg border border-white/10 hover:bg-white/10 cursor-pointer">
+                <input type="checkbox" name="acai-topping" value="Morango Fatiado" class="accent-pink-500">
+                <span class="text-purple-100">Morango Fresco</span>
+              </label>
+              <label class="flex items-center gap-2 bg-white/5 p-2 rounded-lg border border-white/10 hover:bg-white/10 cursor-pointer">
+                <input type="checkbox" name="acai-topping" value="Paçoca" class="accent-pink-500">
+                <span class="text-purple-100">Paçoca</span>
+              </label>
+              <label class="flex items-center gap-2 bg-white/5 p-2 rounded-lg border border-white/10 hover:bg-white/10 cursor-pointer">
+                <input type="checkbox" name="acai-topping" value="Confete/M&M" class="accent-pink-500">
+                <span class="text-purple-100">M&M's</span>
+              </label>
+              <label class="flex items-center gap-2 bg-white/5 p-2 rounded-lg border border-white/10 hover:bg-white/10 cursor-pointer">
+                <input type="checkbox" name="acai-topping" value="Calda de Nutella" class="accent-pink-500">
+                <span class="text-purple-100">Calda de Nutella</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Passo 3: Finalizar -->
+          <div class="flex flex-col justify-between bg-black/30 p-4 rounded-xl border border-white/10">
+            <div>
+              <span class="text-[10px] text-purple-300 uppercase font-extrabold tracking-wider">Resumo do Açaí</span>
+              <h4 class="text-lg font-display font-bold text-white mt-1">Açaí Summer Personalizado</h4>
+              <p class="text-xs text-purple-200 mt-1 leading-relaxed">
+                Preparado na hora com todo carinho da equipe Summer Açaí em Mariana.
+              </p>
+            </div>
+            
+            <div class="mt-4 pt-3 border-t border-white/10">
+              <button onclick="addCustomAcaiToCart()" class="w-full bg-gradient-to-r from-summer-accent to-summer-orange hover:opacity-95 text-white font-black text-xs py-3.5 rounded-xl shadow-lg transition transform active:scale-95 flex items-center justify-center gap-2 uppercase tracking-wider">
+                <i class="fa-solid fa-basket-shopping"></i> Adicionar Açaí à Sacola
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. COMBINADOS / COPOS ESPECIAIS -->
+    <section id="combinados" class="space-y-4">
+      <div class="flex items-center justify-between border-b border-gray-200 pb-3">
+        <div>
+          <span class="text-summer-accent font-extrabold text-xs uppercase tracking-widest">Especiais do Cardápio</span>
+          <h3 class="text-2xl font-display font-black text-summer-dark">Copos Especiais Summer</h3>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Copo 1 -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-purple-100 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="h-40 bg-cover bg-center rounded-xl relative mb-3" style="background-image: url('https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=500&q=80');">
+              <span class="absolute top-2 right-2 bg-summer-accent text-white text-[10px] font-black px-2.5 py-0.5 rounded-full">500ml</span>
+            </div>
+            <h4 class="font-display font-bold text-base text-gray-900">Summer Nutella & Morango</h4>
+            <p class="text-xs text-gray-500 mt-1">Camadas fartas de Nutella artesanal, morangos frescos picados, Leite Ninho e açaí cremoso.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-base font-black text-summer">R$ 24,00</span>
+            <button onclick="addToCart('Summer Nutella & Morango (500ml)', 24.00)" class="bg-summer hover:bg-summer-dark text-white text-xs font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 shadow-sm">
+              <i class="fa-solid fa-plus"></i> Pedir
+            </button>
+          </div>
+        </div>
+
+        <!-- Copo 2 -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-purple-100 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="h-40 bg-cover bg-center rounded-xl relative mb-3" style="background-image: url('https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=500&q=80');">
+              <span class="absolute top-2 right-2 bg-summer-accent text-white text-[10px] font-black px-2.5 py-0.5 rounded-full">500ml</span>
+            </div>
+            <h4 class="font-display font-bold text-base text-gray-900">Summer Ouro Preto & Mariana</h4>
+            <p class="text-xs text-gray-500 mt-1">Açaí com doce de leite caseiro, banana fatiada, paçoca e granola premium crocante.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-base font-black text-summer">R$ 22,00</span>
+            <button onclick="addToCart('Summer Ouro Preto & Mariana (500ml)', 22.00)" class="bg-summer hover:bg-summer-dark text-white text-xs font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 shadow-sm">
+              <i class="fa-solid fa-plus"></i> Pedir
+            </button>
+          </div>
+        </div>
+
+        <!-- Copo 3 -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-purple-100 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="h-40 bg-cover bg-center rounded-xl relative mb-3" style="background-image: url('https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&w=500&q=80');">
+              <span class="absolute top-2 right-2 bg-summer-accent text-white text-[10px] font-black px-2.5 py-0.5 rounded-full">500ml</span>
+            </div>
+            <h4 class="font-display font-bold text-base text-gray-900">Summer Explosion M&M's</h4>
+            <p class="text-xs text-gray-500 mt-1">Para quem ama doce! Açaí com M&M's, calda de chocolate duplo, Leite Condensado e chantilly.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-base font-black text-summer">R$ 23,00</span>
+            <button onclick="addToCart('Summer Explosion M&Ms (500ml)', 23.00)" class="bg-summer hover:bg-summer-dark text-white text-xs font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 shadow-sm">
+              <i class="fa-solid fa-plus"></i> Pedir
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. SORVETES, MILKSHAKES & SUCOS -->
+    <section id="sorvetes" class="space-y-4">
+      <div class="flex items-center justify-between border-b border-gray-200 pb-3">
+        <div>
+          <span class="text-summer-orange font-extrabold text-xs uppercase tracking-widest">Refrescância Total</span>
+          <h3 class="text-2xl font-display font-black text-summer-dark">Sorvetes, Milkshakes & Sucos</h3>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div>
+            <h5 class="font-bold text-sm text-gray-900">Milkshake de Nutella com Ninho (400ml)</h5>
+            <p class="text-xs text-gray-500 mt-0.5">Bate com sorvete cremoso de baunilha e borda caprichada de Nutella.</p>
+            <span class="text-sm font-black text-summer mt-1 block">R$ 18,00</span>
+          </div>
+          <button onclick="addToCart('Milkshake Nutella Ninho 400ml', 18.00)" class="bg-summer-orange hover:bg-orange-600 text-white text-xs font-bold px-3 py-2 rounded-xl transition shrink-0 ml-3">
+            + Adicionar
+          </button>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div>
+            <h5 class="font-bold text-sm text-gray-900">Milkshake de Morango Natural (400ml)</h5>
+            <p class="text-xs text-gray-500 mt-0.5">Feito com pedaços reais de morango e calda artesanal.</p>
+            <span class="text-sm font-black text-summer mt-1 block">R$ 16,00</span>
+          </div>
+          <button onclick="addToCart('Milkshake Morango Natural 400ml', 16.00)" class="bg-summer-orange hover:bg-orange-600 text-white text-xs font-bold px-3 py-2 rounded-xl transition shrink-0 ml-3">
+            + Adicionar
+          </button>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div>
+            <h5 class="font-bold text-sm text-gray-900">Suco Natural de Polpa de Açaí (500ml)</h5>
+            <p class="text-xs text-gray-500 mt-0.5">Energético natural batido com água ou leite e opção de xarope de guaraná.</p>
+            <span class="text-sm font-black text-summer mt-1 block">R$ 12,00</span>
+          </div>
+          <button onclick="addToCart('Suco Natural de Açaí 500ml', 12.00)" class="bg-summer-orange hover:bg-orange-600 text-white text-xs font-bold px-3 py-2 rounded-xl transition shrink-0 ml-3">
+            + Adicionar
+          </button>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div>
+            <h5 class="font-bold text-sm text-gray-900">Cascão Recheado (2 Bolas de Sorvete)</h5>
+            <p class="text-xs text-gray-500 mt-0.5">Cascão crocante recheado de brigadeiro ou Nutella no fundo.</p>
+            <span class="text-sm font-black text-summer mt-1 block">R$ 14,00</span>
+          </div>
+          <button onclick="addToCart('Cascão Recheado 2 Bolas', 14.00)" class="bg-summer-orange hover:bg-orange-600 text-white text-xs font-bold px-3 py-2 rounded-xl transition shrink-0 ml-3">
+            + Adicionar
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-summer-dark text-purple-200 py-8 px-4 mt-auto border-t border-purple-900">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+      <div>
+        <h4 class="font-display font-black text-white text-lg">Summer Açaí — Mariana Acai e Sorvetes LTDA</h4>
+        <p class="text-xs text-purple-300 mt-0.5">Praça Gomes Freire, Nº 220 - Centro, Mariana - MG, CEP 35.420-000</p>
+        <p class="text-[11px] text-summer-yellow font-mono mt-1">CNPJ Oficial: 34.289.266/0001-18 (Empresa Ativa - ME)</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/5531999999999" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-3 rounded-xl transition flex items-center gap-2 shadow-lg">
+          <i class="fa-brands fa-whatsapp text-base"></i> Pedir pelo WhatsApp
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART MODAL -->
+  <div id="cart-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border border-gray-100 flex flex-col max-h-[90vh]">
+      <div class="flex justify-between items-center border-b border-gray-100 pb-3 mb-4">
+        <h3 class="font-display font-bold text-lg text-summer flex items-center gap-2">
+          <i class="fa-solid fa-basket-shopping text-summer-accent"></i> Sua Sacola Summer
+        </h3>
+        <button onclick="toggleCartModal()" class="text-gray-400 hover:text-gray-600 text-sm font-bold p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div id="cart-items-container" class="space-y-3 overflow-y-auto flex-grow pr-1 divide-y divide-gray-100">
+        <!-- Dynamic JS Content -->
+      </div>
+
+      <div class="border-t border-gray-100 pt-4 mt-4">
+        <div class="flex justify-between items-center text-sm font-bold mb-4">
+          <span class="text-gray-600">Total do Pedido:</span>
+          <span id="cart-total-price" class="text-summer text-xl font-black">R$ 0,00</span>
+        </div>
+
+        <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-3.5 rounded-xl transition shadow-lg flex items-center justify-center gap-2 uppercase tracking-wider">
+          <i class="fa-brands fa-whatsapp text-base"></i> Enviar Pedido via WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CNPJ MODAL -->
+  <div id="cnpj-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative border border-gray-100">
+      <div class="flex justify-between items-center border-b border-gray-100 pb-3 mb-4">
+        <h3 class="font-display font-bold text-lg text-purple-900 flex items-center gap-2">
+          <i class="fa-solid fa-shield-check text-emerald-600"></i> Ficha Cadastral da Empresa
+        </h3>
+        <button onclick="openCNPJModal()" class="text-gray-400 hover:text-gray-600 text-sm font-bold p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      <div class="space-y-3 text-xs text-gray-700">
+        <div class="p-3 bg-purple-50 rounded-2xl border border-purple-100">
+          <span class="block text-[10px] uppercase font-bold text-purple-800">Razão Social</span>
+          <strong class="text-sm text-purple-950 font-display">Mariana Acai e Sorvetes LTDA</strong>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-3 bg-gray-50 rounded-2xl border border-gray-200">
+            <span class="block text-[10px] uppercase text-gray-400">Nome Fantasia</span>
+            <strong class="text-gray-900 font-bold">Summer Acai</strong>
+          </div>
+          <div class="p-3 bg-gray-50 rounded-2xl border border-gray-200">
+            <span class="block text-[10px] uppercase text-gray-400">CNPJ Ativo</span>
+            <strong class="font-mono text-gray-900">34.289.266/0001-18</strong>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-3 bg-gray-50 rounded-2xl border border-gray-200">
+            <span class="block text-[10px] uppercase text-gray-400">Data de Abertura</span>
+            <strong class="text-gray-800">23/07/2019</strong>
+          </div>
+          <div class="p-3 bg-gray-50 rounded-2xl border border-gray-200">
+            <span class="block text-[10px] uppercase text-gray-400">Situação Cadastral</span>
+            <strong class="text-emerald-600">ATIVA (Simples Nacional)</strong>
+          </div>
+        </div>
+        <div class="p-3 bg-gray-50 rounded-2xl border border-gray-200">
+          <span class="block text-[10px] uppercase text-gray-400">Endereço da Sede</span>
+          <p class="font-medium text-gray-800 mt-0.5">Praca Gomes Freire, 220 - Centro, Mariana - MG, CEP 35.420-000</p>
+        </div>
+      </div>
+      <div class="mt-5 text-right">
+        <button onclick="openCNPJModal()" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xs px-4 py-2.5 rounded-xl transition">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Cart & Interactive Logic -->
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      updateCartUI();
+      showToast(`${name} adicionado!`);
+    }
+
+    function addCustomAcaiToCart() {
+      const sizeRadio = document.querySelector('input[name="acai-size"]:checked');
+      if (!sizeRadio) return;
+      
+      const [sizeName, sizePriceStr] = sizeRadio.value.split('|');
+      const basePrice = parseFloat(sizePriceStr);
+
+      const selectedToppings = Array.from(document.querySelectorAll('input[name="acai-topping"]:checked'))
+        .map(cb => cb.value);
+
+      const itemName = `Açaí Summer (${sizeName})`;
+      const itemDesc = selectedToppings.length > 0 ? `Adicionais: ${selectedToppings.join(', ')}` : 'Sem adicionais';
+      const fullName = `${itemName} - ${itemDesc}`;
+
+      addToCart(fullName, basePrice);
+    }
+
+    function updateCartUI() {
+      const countEl = document.getElementById('header-cart-count');
+      const container = document.getElementById('cart-items-container');
+      const totalEl = document.getElementById('cart-total-price');
+
+      const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+      countEl.textContent = totalCount;
+
+      if (cart.length === 0) {
+        container.innerHTML = '<p class="text-xs text-gray-400 text-center py-6">Sua sacola Summer está vazia.</p>';
+        totalEl.textContent = 'R$ 0,00';
+        return;
+      }
+
+      let html = '';
+      let totalPrice = 0;
+
+      cart.forEach((item, index) => {
+        const subtotal = item.price * item.qty;
+        totalPrice += subtotal;
+
+        html += `
+          <div class="py-3 flex justify-between items-center">
+            <div class="pr-2">
+              <h5 class="text-xs font-bold text-gray-900">${item.name}</h5>
+              <span class="text-[11px] text-gray-500">R$ ${item.price.toFixed(2).replace('.', ',')} un</span>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden text-xs">
+                <button onclick="changeQty(${index}, -1)" class="px-2 py-1 bg-gray-50 hover:bg-gray-100 text-gray-600 font-bold">-</button>
+                <span class="px-2.5 py-1 font-bold text-gray-800">${item.qty}</span>
+                <button onclick="changeQty(${index}, 1)" class="px-2 py-1 bg-gray-50 hover:bg-gray-100 text-gray-600 font-bold">+</button>
+              </div>
+              <span class="text-xs font-black text-summer w-16 text-right">R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      totalEl.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+    }
+
+    function changeQty(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
+
+    function toggleCartModal() {
+      const modal = document.getElementById('cart-modal');
+      modal.classList.toggle('hidden');
+    }
+
+    function openCNPJModal() {
+      const modal = document.getElementById('cnpj-modal');
+      modal.classList.toggle('hidden');
+    }
+
+    function checkoutWhatsApp() {
+      if (cart.length === 0) {
+        alert('Sua sacola está vazia!');
+        return;
+      }
+
+      let message = 'Olá! Gostaria de fazer um pedido no Summer Açaí (Mariana/MG):\n\n';
+      let total = 0;
+
+      cart.forEach(item => {
+        const sub = item.price * item.qty;
+        total += sub;
+        message += `▪️ ${item.qty}x ${item.name} - R$ ${sub.toFixed(2).replace('.', ',')}\n`;
+      });
+
+      message += `\n*Total do Pedido: R$ ${total.toFixed(2).replace('.', ',')}*\n\nEndereço de entrega / Retirada em Mariana: `;
+
+      const encoded = encodeURIComponent(message);
+      window.open(`https://wa.me/5531999999999?text=${encoded}`, '_blank');
+    }
+
+    function showToast(text) {
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-5 right-5 bg-summer text-white text-xs font-bold px-4 py-3 rounded-2xl shadow-2xl z-50 flex items-center gap-2 border border-summer-accent';
+      toast.innerHTML = `<i class="fa-solid fa-circle-check text-summer-yellow"></i> ${text}`;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.remove();
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
